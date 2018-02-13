@@ -8,10 +8,9 @@
     <link rel="shortcut icon" href="">
 
     <!-- load bootstrap and fontawesome via CDN -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
     <style>
-        html, body
-        {
+        html, body {
             font-size: 1.1em;
         }
     </style>
@@ -42,6 +41,12 @@
 
         <h1>Hello {{ name + '. How are you?' }}!</h1>
 
+        <div>
+            <label>What is your twitter handle?</label>
+            <input type="text" ng-model="handle"/>
+        </div>
+
+        <h1>twitter.com/{{ lowercasehandle() }}</h1>
     </div>
 
 </div>
