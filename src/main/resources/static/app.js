@@ -18,4 +18,21 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
         return $filter('lowercase')($scope.handle);
     }
 
+    $scope.$watch('handle', function (newValue, oldValue) {
+            console.info('Changed!');
+            console.log('Old: ' + oldValue);
+            console.log('New: ' + newValue);
+        }
+    );
+
+    setTimeout(function () {
+
+        /*Using apply to notify AngularJS digest loop*/
+        $scope.$apply(function () {
+            $scope.handle = 'newTwitterHandle';
+            console.log('ScopeChanged')
+        })
+
+    }, 3000);
+
 }]);
