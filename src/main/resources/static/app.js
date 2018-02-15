@@ -37,18 +37,22 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
 
     $scope.characters = 5;
 
-    $scope.rules = [
-
-        {rulename: "Must be 5 characters"},
-        {rulename: "Must not be used elsewhere"},
-        {rulename: "Must be cool"}
-
-    ];
-
-    $scope.alertClicked = function() {
+    $scope.alertClicked = function () {
         alert("Clicked");
     };
 
     $scope.name = 'John Doe';
+
+    var rulesRequest = new XMLHttpRequest();
+    rulesRequest.onreadystatechange = function () {
+        $scope.$apply(function () {
+            if (rulesRequest.readyState == 4 && rulesRequest.status == 200) {
+                $scope.rules = JSON.parse(rulesRequest.responseText);
+            }
+        });
+    };
+
+    rulesRequest.open("GET", "http://localhost:8080/api", true);
+    rulesRequest.send();
 
 }]);
