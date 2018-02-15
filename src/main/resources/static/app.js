@@ -43,6 +43,7 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http
 
     $scope.name = 'John Doe';
 
+
     $http.get('/api')
         .success(function (result) {
 
@@ -54,5 +55,35 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http
             console.log(data);
 
         });
+
+    $scope.newRule = '';
+    $scope.addRule = function () {
+
+        $http.post('/api', {ruleName: $scope.newRule})
+            .success(function (result) {
+
+                console.log(result);
+                $scope.newRule = '';
+
+                //call list again for update, move to function
+                $http.get('/api')
+                    .success(function (result) {
+
+                        $scope.rules = result;
+
+                    })
+                    .error(function (data, status) {
+
+                        console.log(data);
+
+                    });
+
+            })
+            .error(function (data, status) {
+
+                console.log(data);
+
+            })
+    }
 
 }]);
