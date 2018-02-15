@@ -35,4 +35,6 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
 
     }, 3000);
 
+    $scope.characters = 5;
+
 }]);
