@@ -2,6 +2,9 @@ package org.tisha.demo.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tisha.demo.model.Rule;
@@ -21,8 +24,14 @@ public class RulesController {
         this.ruleService = ruleService;
     }
 
-    @RequestMapping("")
+    @GetMapping()
     public List<Rule> getAllRules() {
         return ruleService.getAllRules();
+    }
+
+
+    @PostMapping()
+    public Rule addRule(@RequestBody Rule rule) {
+        return ruleService.addRule(rule);
     }
 }

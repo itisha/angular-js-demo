@@ -1,9 +1,10 @@
 package org.tisha.demo.services;
 
-import java.util.LinkedList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tisha.demo.model.Rule;
+import org.tisha.demo.repositories.RulesRepository;
 
 /**
  * Created by t on 2/15/2018.
@@ -11,14 +12,21 @@ import org.tisha.demo.model.Rule;
 @Service
 public class RuleServiceImpl implements RuleService {
 
+    private RulesRepository rulesRepository;
+
+    @Autowired
+    public RuleServiceImpl(RulesRepository rulesRepository) {
+        this.rulesRepository = rulesRepository;
+    }
+
     @Override
     public List<Rule> getAllRules() {
-        List<Rule> rules = new LinkedList<>();
-        rules.add(new Rule("Must be 5 characters"));
-        rules.add(new Rule("Must not be used elsewhere"));
-        rules.add(new Rule("Must be cool"));
-        rules.add(new Rule("ZZZZZzzzzzzzzzzz"));
-        return rules;
+        return rulesRepository.findAll();
+    }
+
+    @Override
+    public Rule addRule(Rule rule) {
+        return rulesRepository.save(rule);
     }
 
 }

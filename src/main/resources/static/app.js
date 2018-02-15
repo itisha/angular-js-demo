@@ -2,7 +2,7 @@
 var angularApp = angular.module('angularApp', []);
 
 // CONTROLLERS
-angularApp.controller('mainController', ['$scope', '$timeout', '$filter', function ($scope, $timeout, $filter) {
+angularApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http', function ($scope, $timeout, $filter, $http) {
 
     $scope.name = 'Tisha';
 
@@ -16,7 +16,7 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
 
     $scope.lowercasehandle = function () {
         return $filter('lowercase')($scope.handle);
-    }
+    };
 
     $scope.$watch('handle', function (newValue, oldValue) {
             console.info('Changed!');
@@ -43,16 +43,16 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
 
     $scope.name = 'John Doe';
 
-    var rulesRequest = new XMLHttpRequest();
-    rulesRequest.onreadystatechange = function () {
-        $scope.$apply(function () {
-            if (rulesRequest.readyState == 4 && rulesRequest.status == 200) {
-                $scope.rules = JSON.parse(rulesRequest.responseText);
-            }
-        });
-    };
+    $http.get('/api')
+        .success(function (result) {
 
-    rulesRequest.open("GET", "http://localhost:8080/api", true);
-    rulesRequest.send();
+            $scope.rules = result;
+
+        })
+        .error(function (data, status) {
+
+            console.log(data);
+
+        });
 
 }]);

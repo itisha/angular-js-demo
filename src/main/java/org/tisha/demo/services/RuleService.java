@@ -8,4 +8,5 @@ import org.tisha.demo.model.Rule;
  */
 public interface RuleService {
     List<Rule> getAllRules();
+    Rule addRule(Rule rule);
 }
