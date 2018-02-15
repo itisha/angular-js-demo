@@ -74,6 +74,11 @@
 
         </ul>
 
+        <input type="button" value="Click me" ng-click="alertClicked()"/>
+
+        <!-- ng-cloak does not display this until angularJS kicked in to process the page-->
+        <div ng-cloak>{{ name }}</div>
+
     </div>
 
 </div>

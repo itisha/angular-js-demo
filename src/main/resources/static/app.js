@@ -43,6 +43,12 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', functi
         {rulename: "Must not be used elsewhere"},
         {rulename: "Must be cool"}
 
-    ]
+    ];
+
+    $scope.alertClicked = function() {
+        alert("Clicked");
+    };
+
+    $scope.name = 'John Doe';
 
 }]);
