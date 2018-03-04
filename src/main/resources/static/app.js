@@ -24,7 +24,12 @@ angularApp.config(function ($routeProvider, $locationProvider) {
             controller: 'contactController'
         })
 
-        // route for the contact page
+        .when('/directives', {
+            templateUrl: 'pages/directives.html',
+            controller: 'directivesController'
+        })
+
+        // route for the test page
         .when('/test', {
             templateUrl: 'pages/test.html',
             controller: 'testController'
@@ -43,6 +48,10 @@ angularApp.controller('aboutController', function ($scope) {
 
 angularApp.controller('contactController', function ($scope) {
     $scope.message = 'Contact us! JK. This is just a demo.';
+});
+
+angularApp.controller('directivesController', function ($scope) {
+
 });
 
 angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
@@ -134,3 +143,9 @@ angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http
     }
 
 }]);
+
+angularApp.directive('helloWorld', function () {
+    return {
+        template: 'Hello World!'
+    };
+});
