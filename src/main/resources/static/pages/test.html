@@ -1,0 +1,45 @@
+<div>
+
+    <h1>Hello {{ name + '. How are you?' }}!</h1>
+
+    <div>
+        <label>What is your twitter handle?</label>
+        <input type="text" ng-model="handle"/>
+    </div>
+
+    <div class="alert"
+         ng-class="{ 'alert-warning': handle.length < characters,
+             'alert-success': handle.length === characters,
+             'alert-danger': handle.length > characters}">
+
+        <div ng-if="handle.length < characters">
+            You have less then 5 characters!
+        </div>
+
+        <div ng-show="handle.length === characters">
+            Success!
+        </div>
+
+        <div ng-hide="handle.length <= characters">
+            You have more then 5 characters!
+        </div>
+    </div>
+
+    <h1>twitter.com/{{ lowercasehandle() }}</h1>
+
+    <h3>Rules</h3>
+    <ul>
+        <li ng-repeat="rule in rules">
+            {{ rule.ruleName }}
+        </li>
+    </ul>
+
+    Add rule: <input type="text" ng-model="newRule"/><a href="#" class="btn btn-default"
+                                                        ng-click="addRule()">Add</a><br/><br/>
+
+    <input type="button" value="Click me" ng-click="alertClicked()"/>
+
+    <!-- ng-cloak does not display this until angularJS kicked in to process the page-->
+    <div ng-cloak>{{ name }}</div>
+
+</div>

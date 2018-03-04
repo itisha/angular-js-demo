@@ -1,8 +1,51 @@
-// MODULE
-var angularApp = angular.module('angularApp', []);
+// create the module and name it scotchApp
+var angularApp = angular.module('angularApp', ['ngRoute']);
 
-// CONTROLLERS
-angularApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http', function ($scope, $timeout, $filter, $http) {
+// configure our routes
+angularApp.config(function ($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('');
+
+    $routeProvider
+        // route for the home page
+        .when('/', {
+            templateUrl: 'pages/home.html',
+            controller: 'mainController'
+        })
+
+        // route for the about page
+        .when('/about', {
+            templateUrl: 'pages/about.html',
+            controller: 'aboutController'
+        })
+
+        // route for the contact page
+        .when('/contact', {
+            templateUrl: 'pages/contact.html',
+            controller: 'contactController'
+        })
+
+        // route for the contact page
+        .when('/test', {
+            templateUrl: 'pages/test.html',
+            controller: 'testController'
+        });
+});
+
+// create the controller and inject Angular's $scope
+angularApp.controller('mainController', function ($scope) {
+    // create a message to display in our view
+    $scope.message = 'Everyone come and see how good I look!';
+});
+
+angularApp.controller('aboutController', function ($scope) {
+    $scope.message = 'Look! I am an about page.';
+});
+
+angularApp.controller('contactController', function ($scope) {
+    $scope.message = 'Contact us! JK. This is just a demo.';
+});
+
+angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
 
     $scope.name = 'Tisha';
 
@@ -45,45 +88,49 @@ angularApp.controller('mainController', ['$scope', '$timeout', '$filter', '$http
 
 
     $http.get('/api')
-        .success(function (result) {
+        .then(function (success) {
 
-            $scope.rules = result;
+            $scope.rules = success.data;
 
-        })
-        .error(function (data, status) {
+        },
+        function (error) {
 
-            console.log(data);
+            console.error(error);
 
-        });
+        }
+    );
 
     $scope.newRule = '';
     $scope.addRule = function () {
 
         $http.post('/api', {ruleName: $scope.newRule})
-            .success(function (result) {
+            .then(function (success) {
 
-                console.log(result);
+                console.log('posting data to server ...');
                 $scope.newRule = '';
+
+                //avoid redirecting after post
+                console.log('PATH ::' + $location.path());
+                $location.path('/test');
+
 
                 //call list again for update, move to function
                 $http.get('/api')
-                    .success(function (result) {
+                    .then(function (success) {
 
-                        $scope.rules = result;
+                        $scope.rules = success.data;
+                        console.log('refreshing data');
 
-                    })
-                    .error(function (data, status) {
+                    },
+                    function (error) {
 
-                        console.log(data);
+                        console.error(error);
+                        console.error('error when refreshing data');
 
-                    });
+                    }
+                );
 
-            })
-            .error(function (data, status) {
-
-                console.log(data);
-
-            })
+            });
     }
 
 }]);
