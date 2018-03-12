@@ -54,6 +54,9 @@ angularApp.controller('directivesController', function ($scope) {
     $scope.person = {
         name: 'John',
         city: 'Minsk'
+    };
+    $scope.func = function () {
+        console.log('action called');
     }
 });
 
