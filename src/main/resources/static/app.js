@@ -51,7 +51,10 @@ angularApp.controller('contactController', function ($scope) {
 });
 
 angularApp.controller('directivesController', function ($scope) {
-
+    $scope.person = {
+        name: 'John',
+        city: 'Minsk'
+    }
 });
 
 angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
@@ -146,6 +149,20 @@ angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http
 
 angularApp.directive('helloWorld', function () {
     return {
-        template: 'Hello World!'
+        scope: {
+            name: '@'
+        },
+        template: 'Hello World, {{ name }}!'
+    };
+});
+
+angularApp.directive('isolatedScopeObject', function () {
+    return {
+        scope: {
+            ds: '='
+        },
+        template: 'Name: {{ds.name}} <br/>City: {{ds.city}}' +
+        '<br/> <button ng-click="ds.name=\'Fred\'">' +
+        'Change</button>'
     };
 });
