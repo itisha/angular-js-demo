@@ -9,29 +9,29 @@ angularApp.config(function ($routeProvider, $locationProvider) {
         // route for the home page
         .when('/', {
             templateUrl: 'views/home.html',
-            controller: 'mainController'
+            controller: 'MainController'
         })
 
         // route for the about page
         .when('/about', {
             templateUrl: 'views/about.html',
-            controller: 'aboutController'
+            controller: 'AboutController'
         })
 
         // route for the contact page
         .when('/contact', {
             templateUrl: 'views/contact.html',
-            controller: 'contactController'
+            controller: 'ContactController'
         })
 
         .when('/directives', {
             templateUrl: 'views/directives.html',
-            controller: 'directivesController'
+            controller: 'DirectivesController'
         })
 
         // route for the test page
         .when('/test', {
             templateUrl: 'views/test.html',
-            controller: 'testController'
+            controller: 'TestController'
         });
 });

@@ -1,4 +1,4 @@
-angularApp.controller('directivesController', function ($scope) {
+angularApp.controller('DirectivesController', function ($scope) {
     $scope.person = {
         name: 'John',
         city: 'Minsk'

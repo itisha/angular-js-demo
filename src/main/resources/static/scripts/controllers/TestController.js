@@ -1,4 +1,4 @@
-angularApp.controller('testController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
+angularApp.controller('TestController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
 
     $scope.name = 'Tisha';
 
