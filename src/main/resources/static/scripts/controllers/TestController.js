@@ -1,4 +1,10 @@
-angularApp.controller('TestController', ['$scope', '$timeout', '$filter', '$http', '$location', function ($scope, $timeout, $filter, $http, $location) {
+angularApp.controller('TestController', ['$scope', '$timeout', '$filter', '$http', '$location', 'hexafy', function ($scope, $timeout, $filter, $http, $location, hexafy) {
+
+    $scope.number = 257;
+    $scope.hex = hexafy.myFunc($scope.number);
+    console.log('Custom service call:');
+    console.log('number = ' + $scope.number);
+    console.log('hexafy result = ' + $scope.hex);
 
     $scope.name = 'Tisha';
 
