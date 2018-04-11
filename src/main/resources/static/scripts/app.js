@@ -29,6 +29,12 @@ angularApp.config(function ($routeProvider, $locationProvider) {
             controller: 'DirectivesController'
         })
 
+        .when('/delayBindWithCompile', {
+            templateUrl: 'views/delayBindWithCompile.html',
+            controller: 'DelayedBindWithCompileController'
+        })
+
+
         // route for the test page
         .when('/test', {
             templateUrl: 'views/test.html',
