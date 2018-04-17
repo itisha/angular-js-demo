@@ -2,7 +2,11 @@
 var angularApp = angular.module('angularApp', ['ngRoute']);
 
 // configure our routes
-angularApp.config(function ($routeProvider, $locationProvider) {
+angularApp.config(function ($routeProvider, $locationProvider, $compileProvider) {
+
+    //makes data bindings available immediately in directive controller constructor
+    $compileProvider.preAssignBindingsEnabled(true);
+
     $locationProvider.hashPrefix('');
 
     $routeProvider

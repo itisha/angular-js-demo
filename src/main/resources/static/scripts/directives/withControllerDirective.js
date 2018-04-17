@@ -2,22 +2,27 @@
 
     var withController = function () {
 
-        var template = '<button ng-click="addItem()">Add Item</button><ul>' +
-                '<li ng-repeat="item in items">{{ ::item.name }}</li></ul>',
+        var template = '<button ng-click="vm.addItem()">Add Item</button><ul>' +
+                '<li ng-repeat="item in vm.items">{{ ::item.name }}</li></ul>',
 
-            controller = ['$scope', function ($scope) {
-                init();
+            controller = function () {
+
+                var vm = this;
 
                 function init() {
-                    $scope.items = angular.copy($scope.datasource);
+                    vm.items = angular.copy(vm.datasource);
                 }
 
-                $scope.addItem = function () {
-                    var name = 'With Controller Directive';
-                    $scope.add()(name);
-                    $scope.items.push({name: name});
-                }
-            }];
+                vm.addItem = function () {
+                    var name = 'With Controller Item';
+                    vm.add()(name);
+                    vm.items.push({
+                        name: name
+                    });
+                };
+
+                init();
+            };
 
         return {
             restrict: 'EA', //Default in 1.3+
@@ -26,6 +31,8 @@
                 add: '&'
             },
             controller: controller,
+            controllerAs: 'vm',
+            bindToController: true,
             template: template
         };
     };

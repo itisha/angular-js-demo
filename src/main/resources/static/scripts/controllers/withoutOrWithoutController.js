@@ -25,6 +25,8 @@ angularApp.controller('WithoutOrWithoutController', function ($scope) {
             "url": "http://ya.ru/2"
         }];
 
+    console.log($scope.customers);
+
     $scope.addCustomer = function (name) {
         console.log(name);
         counter++;
