@@ -49,6 +49,11 @@ angularApp.config(function ($routeProvider, $locationProvider, $compileProvider)
             controller: 'TableHelperWithControllerController'
         })
 
+        .when('/controllerPassingParameter', {
+            templateUrl: 'views/controllerPassingParameter.html',
+            controller: 'controllerPassingParameterController'
+        })
+
         .when('/withoutOrWithoutController', {
             templateUrl: 'views/withoutOrWithoutController.html',
             controller: 'WithoutOrWithoutController'
