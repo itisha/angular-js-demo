@@ -54,6 +54,12 @@ angularApp.config(function ($routeProvider, $locationProvider, $compileProvider)
             controller: 'controllerPassingParameterController'
         })
 
+
+        .when('/transclusion', {
+            templateUrl: 'views/trnasclustion.html',
+            controller: 'transclusionController'
+        })
+
         .when('/withoutOrWithoutController', {
             templateUrl: 'views/withoutOrWithoutController.html',
             controller: 'WithoutOrWithoutController'
