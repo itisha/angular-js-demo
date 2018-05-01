@@ -54,6 +54,10 @@ angularApp.config(function ($routeProvider, $locationProvider, $compileProvider)
             controller: 'controllerPassingParameterController'
         })
 
+        .when('/tableHelperTransclude', {
+            templateUrl: 'views/tableHelperTransclude.html',
+            controller: 'tableHelperTranscludeController'
+        })
 
         .when('/transclusion', {
             templateUrl: 'views/trnasclustion.html',
